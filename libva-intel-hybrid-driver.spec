@@ -10,7 +10,7 @@ Summary:        VA driver for Intel G45 & HD Graphics family
 # under NTP
 License:        MIT and BSD an NTP
 URL:            https://github.com/01org/intel-hybrid-driver
-Source0:        https://github.com/01org/intel-hybrid-driver/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # Build script uses obsolete macro AC_PROG_LIBTOOL, replace it with LT_INIT
 Patch0:         libva-intel-hybrid-driver-1.0.2_replace_obsolete_AC_PROG_LIBTOOL.patch
