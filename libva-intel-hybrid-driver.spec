@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -14,6 +14,7 @@ Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 # Build script uses obsolete macro AC_PROG_LIBTOOL, replace it with LT_INIT
 Patch0:         libva-intel-hybrid-driver-1.0.2_replace_obsolete_AC_PROG_LIBTOOL.patch
+Patch1:         Update-the-dependency-to-libva-2.0.patch
 
 #obviously only for intel platform
 ExclusiveArch:  %{ix86} x86_64 ia64
@@ -55,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Wed Jan 24 2018 Nicolas Chauvet <kwizart@gmail.com> - 1.0.2-6
+- Backport upstream patch
+
 * Mon Jan 15 2018 Nicolas Chauvet <kwizart@gmail.com> - 1.0.2-5
 - Rebuilt for libva-2.0.0
 
