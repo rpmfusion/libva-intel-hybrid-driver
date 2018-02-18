@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -56,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Sun Feb 18 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-8
+- Add missing BR for gcc-c++
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
