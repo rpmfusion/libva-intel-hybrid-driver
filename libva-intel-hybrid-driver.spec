@@ -21,7 +21,7 @@ ExclusiveArch:  %{ix86} x86_64 ia64
 
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(libdrm) >= 2.4.45
-BuildRequires:  pkgconfig(libva) >= 0.38
+BuildRequires:  pkgconfig(libva) >= 1.0.0
 BuildRequires:  pkgconfig(libcmrt) >= 0.10.0
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(wayland-server)
