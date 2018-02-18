@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -56,6 +56,9 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Sun Feb 18 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-9
+- Fix missing BR
+
 * Sun Feb 18 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-8
 - Add missing BR for gcc-c++
 
