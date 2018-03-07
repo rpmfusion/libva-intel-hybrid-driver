@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -19,6 +19,7 @@ Patch1:         Update-the-dependency-to-libva-2.0.patch
 #obviously only for intel platform
 ExclusiveArch:  %{ix86} x86_64 ia64
 
+BuildRequires:  gcc-c++
 BuildRequires:  libtool
 BuildRequires:  pkgconfig(libdrm) >= 2.4.45
 BuildRequires:  pkgconfig(libva) >= 1.0.0
@@ -56,10 +57,7 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
-* Sun Feb 18 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-9
-- Fix missing BR
-
-* Sun Feb 18 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-8
+* Wed Mar 07 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-10
 - Add missing BR for gcc-c++
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-7
