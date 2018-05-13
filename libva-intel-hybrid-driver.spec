@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -8,7 +8,7 @@ Summary:        VA driver for Intel G45 & HD Graphics family
 # src/vp9hdec/intel_hybrid_vp9_kernel under BSD
 # and src/wayland-drm-client-protocol.h, src/wayland/wayland-drm.xml
 # under NTP
-License:        MIT and BSD an NTP
+License:        MIT and BSD and NTP
 URL:            https://github.com/01org/intel-hybrid-driver
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
@@ -57,6 +57,10 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Sun May 13 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-11
+- Fix typo in License
+- Fixes bug #1577586
+
 * Wed Mar 07 2018 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-10
 - Add missing BR for gcc-c++
 
