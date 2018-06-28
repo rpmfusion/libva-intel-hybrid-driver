@@ -49,7 +49,7 @@ index 0d6ccf0..889861c 100644
  #include <stdbool.h>
  #include "media_drv_defines.h"
 -#define LIBVA_X11_NAME "libva-x11.so.1"
-+#define LIBVA_X11_NAME "libva-x11.so"
++#define LIBVA_X11_NAME "libva-x11.so.2"
  VOID media_output_dri_terminate (VADriverContextP ctx);
  BOOL media_output_dri_init (VADriverContextP ctx);
  
