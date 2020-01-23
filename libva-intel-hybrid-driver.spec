@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        16%{?dist}
+Release:        17%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
@@ -18,6 +18,8 @@ Patch1:         Update-the-dependency-to-libva-2.0.patch
 # Fixes https://github.com/01org/intel-hybrid-driver/issues/25 and RHBZ#1567582
 # https://patch-diff.githubusercontent.com/raw/01org/intel-hybrid-driver/pull/26
 Patch2:         libva-intel-hybrid-driver-1.0.2-load_libva-x11_for_any_ABI_version.patch
+# https://github.com/intel/intel-hybrid-driver/issues/27
+Patch3:         0001-Mark-global-variables-as-extern.patch
 
 #obviously only for intel platform
 ExclusiveArch:  %{ix86} x86_64 ia64
@@ -60,6 +62,9 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Thu Jan 23 01:19:34 CET 2020 Robert-André Mauchin <zebob.m@gmail.com> - 1.0.2-17
+- Fix compatibility with GCC 10
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
