@@ -31,6 +31,7 @@ BuildRequires:  pkgconfig(libva) >= 1.0.0
 BuildRequires:  pkgconfig(libcmrt) >= 0.10.0
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(wayland-server)
+BuildRequires: make
 
 
 %description
