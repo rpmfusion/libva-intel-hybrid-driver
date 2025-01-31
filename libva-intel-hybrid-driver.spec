@@ -1,14 +1,19 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        27%{?dist}
+Release:        29%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
-# Everything under MIT, except vp9hdec/intel_hybrid_hostvld_vp9*, 
-# vp9hdec/decode_hybrid_vp9.cpp, src/media_drv_kernels*, 
-# src/vp9hdec/intel_hybrid_vp9_kernel under BSD
-# and src/wayland-drm-client-protocol.h, src/wayland/wayland-drm.xml
-# under NTP
-License:        MIT and BSD and NTP
+# Everything under MIT, except:
+# src/media_drv_kernels{,_g7}.c
+# src/vp9hdec/intel_hybrid_vp9_kernel_g{75,8,8lp,9}.cpp
+# under LicenceRef-Intel-firmware
+# src/vp9hdec/decode_hybrid_vp9.cpp
+# src/vp9hdec/intel_hybrid_hostvld_vp9*,
+# under MIT and BSD-3-Clause and
+# src/wayland-drm-client-protocol.h
+# src/wayland/wayland-drm.xml
+# under HPND-sell-variant
+License:        MIT AND BSD-3-Clause AND HPND-sell-variant AND LicenseRef-Intel-firmware
 URL:            https://github.com/01org/intel-hybrid-driver
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
@@ -63,6 +68,11 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Fri Jan 31 2025 Dominik Mierzejewski <dominik@greysector.net> - 1.0.2-29
+- Moved to RPM Fusion (rfbz#7098)
+- Corrected the License tag and converted to SPDX
+- Bumped release to match last in Fedora
+
 * Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.2-27
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
 
