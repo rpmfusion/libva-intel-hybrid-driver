@@ -1,0 +1,85 @@
+From cfb3b71815965054dd52a631801bef71e64ad97a Mon Sep 17 00:00:00 2001
+From: Kai-Chun Ning <kaichun.ning@gmail.com>
+Date: Sun, 15 May 2022 18:15:01 +0200
+Subject: [PATCH 1/5] Fix out-of-bound read in memcpy calls
+
+Signed-off-by: Kai-Chun Ning <kaichun.ning@gmail.com>
+---
+ src/media_drv_gen75_render.c | 2 +-
+ src/media_drv_gen8_render.c  | 2 +-
+ src/media_drv_hw_g75.c       | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/media_drv_gen75_render.c b/src/media_drv_gen75_render.c
+index a3d60ff..51b1442 100644
+--- a/src/media_drv_gen75_render.c
++++ b/src/media_drv_gen75_render.c
+@@ -1453,7 +1453,7 @@ media_drv_gen75_render_init(VADriverContextP ctx)
+ 
+     if (IS_HASWELL (drv_ctx->drv_data.device_id)) {
+         memcpy(render_state->render_kernels, render_kernels_gen7_haswell,
+-               sizeof(render_state->render_kernels));
++               sizeof(render_kernels_gen7_haswell));
+         render_state->render_put_surface = gen7_render_put_surface;
+         render_state->render_put_subpicture = gen7_render_put_subpicture;
+     } else {
+diff --git a/src/media_drv_gen8_render.c b/src/media_drv_gen8_render.c
+index 42005ea..da349cc 100644
+--- a/src/media_drv_gen8_render.c
++++ b/src/media_drv_gen8_render.c
+@@ -1741,7 +1741,7 @@ media_drv_gen8_render_init(VADriverContextP ctx)
+     render_state->max_wm_threads = 64;
+ 
+     memcpy(render_state->render_kernels, render_kernels_gen8,
+-           sizeof(render_state->render_kernels));
++           sizeof(render_kernels_gen8));
+ 
+     kernel_size = 4096;
+ 
+diff --git a/src/media_drv_hw_g75.c b/src/media_drv_hw_g75.c
+index 57eddbd..080cd86 100644
+--- a/src/media_drv_hw_g75.c
++++ b/src/media_drv_hw_g75.c
+@@ -3325,7 +3325,7 @@ media_set_curbe_vp8_me (VP8_ME_CURBE_PARAMS * params)
+   MEDIA_CURBE_DATA_ME *cmd = (MEDIA_CURBE_DATA_ME *) params->curbe_cmd_buff;
+ 
+   media_drv_memcpy (cmd, sizeof (MEDIA_CURBE_DATA_ME), ME_CURBE_INIT_DATA,
+-		    sizeof (MEDIA_CURBE_DATA_ME));
++		    sizeof (ME_CURBE_INIT_DATA));
+   me_mode =
+     params->
+     me_16x_enabled ? (params->me_16x ? ME16x_BEFORE_ME4x : ME4x_AFTER_ME16x) :
+
+From e832b35b32435c1b30016ef9a1774736c9f7ee05 Mon Sep 17 00:00:00 2001
+From: EiPiFun <132569654+EiPiFun@users.noreply.github.com>
+Date: Mon, 17 Jun 2024 11:34:22 +0800
+Subject: [PATCH 2/5] Fix vaDriverInit
+
+Direct modification of vaDriverInit_0_34 to VA_DRIVER_INIT_FUNC will make this hybrid driver unable to work with i965 driver.
+
+Add instead of modification will solve this. Then the hybrid driver could work independently or as a plugin for i965.
+
+Sorry for that I am not a arch user and I cannot comment at https://aur.archlinux.org/packages/intel-hybrid-codec-driver-git
+---
+ src/media_drv_init.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/src/media_drv_init.c b/src/media_drv_init.c
+index 36ddce4..e45adb7 100644
+--- a/src/media_drv_init.c
++++ b/src/media_drv_init.c
+@@ -2774,4 +2774,13 @@ __vaDriverInit_0_34 (VADriverContextP ctx)
+   return ret;
+ }
+ 
++VAStatus DLL_EXPORT VA_DRIVER_INIT_FUNC (VADriverContextP ctx);
++VAStatus
++VA_DRIVER_INIT_FUNC (VADriverContextP ctx)
++{
++  VAStatus ret = VA_STATUS_ERROR_UNKNOWN;
++
++  ret = va_driver_init (ctx);
++  return ret;
++}
+ 
+

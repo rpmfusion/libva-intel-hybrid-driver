@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        29%{?dist}
+Release:        30%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except:
@@ -25,6 +25,10 @@ Patch1:         Update-the-dependency-to-libva-2.0.patch
 Patch2:         libva-intel-hybrid-driver-1.0.2-load_libva-x11_for_any_ABI_version.patch
 # https://github.com/intel/intel-hybrid-driver/issues/27
 Patch3:         0001-Mark-global-variables-as-extern.patch
+# https://github.com/intel/intel-hybrid-driver/pull/32
+Patch4:         libva-intel-hybrid-driver-1.0.2-fix-NULL-ptr-dereference.patch
+# https://github.com/intel/intel-hybrid-driver/pull/36 (parts of)
+Patch5:         libva-intel-hybrid-driver-1.0.2-fix-OOB-read-in-memcpy-calls.patch
 
 #obviously only for intel platform
 ExclusiveArch:  %{ix86} x86_64 ia64
@@ -68,6 +72,10 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Fri Feb 14 2025 Dominik Mierzejewski <dominik@greysector.net> - 1.0.2-30
+- Applied upstream PRs #32 and #36 (rhbz#2283634),
+  fixing some NULL pointer dereference and OOB read bugs.
+
 * Fri Jan 31 2025 Dominik Mierzejewski <dominik@greysector.net> - 1.0.2-29
 - Moved to RPM Fusion (rfbz#7098)
 - Corrected the License tag and converted to SPDX
