@@ -1,6 +1,6 @@
 Name:           libva-intel-hybrid-driver
 Version:        1.0.2
-Release:        30%{?dist}
+Release:        31%{?dist}
 Summary:        VA driver for Intel G45 & HD Graphics family
 
 # Everything under MIT, except:
@@ -72,6 +72,9 @@ find %{buildroot} -name "*.la" -delete
 
 
 %changelog
+* Sun Jul 27 2025 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.0.2-31
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
 * Fri Feb 14 2025 Dominik Mierzejewski <dominik@greysector.net> - 1.0.2-30
 - Applied upstream PRs #32 and #36 (rhbz#2283634),
   fixing some NULL pointer dereference and OOB read bugs.
